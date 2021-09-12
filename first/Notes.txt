@@ -1,0 +1,134 @@
+Difference btw function declaration and expressions:
+
+1. Functions delaration are hoisted to the top i.e. when a js file is loaded all the
+function declarations are moved to the top of the file which means a declared function
+can be invoked before its declaration.
+
+Function expression are not hoisted.
+
+2. Function declaration are part of the global scope i.e. they are available
+througout the application.
+
+Function expressions are part of the defined scope i.e. they are available 
+in the block where they are defined. For this reason, they are used mainly i.e.
+they don't pollute the global scope.
+
+Arrow functions or fat arrow function: Are anonymous function expression which are defined
+as follows:
+// If function body has only one statement;
+(args if any) => statement;
+// If function body has only multiple statements;
+(args if any) => {
+    statements;
+}
+
+Other global objects of Node:
+
+1. setTimeout(): Is a function which is used to execute a callback function after
+the given time. 
+A function or function expression which is passed as parameter to another function
+is known as callback function.
+syntax of setTimeout:
+
+setTimeout(callback, timeInMilliseconds);
+
+2. clearTimeout(): Is used to clear a timeout.
+syntax:
+clearTimeout(timeoutRef);
+
+3. setInterval(): Is a function which is used to execute a callback function repeateadly
+after the given time. 
+
+syntax of setTimeout:
+
+setInterval(callback, timeInMilliseconds);
+
+4. clearInterval(): Is used to clear interval.
+clearTimeout(intervalRef);
+
+etc.
+
+Execution of a program can be synchrouns or asynchronous.
+
+in synchronous programming, we perform an action and wait for its completion 
+before doing something else.
+
+In Asynchronous programming, we perform an action and without waiting for its 
+completion start doing something else. When the old task completes, we get its
+result and use it.
+
+Node uses event loop for async programming.
+
+this keyword: 
+
+In JavaScript, each function has a property named this which represents the function context i.e. in 
+simple words this represents the object using which the function is invoked.
+
+When a JavaScript is executed two types of contexts are created:
+
+1. Global context
+2. Functional context
+
+A context can be thought of as an object which has some properties and functions.
+
+
+In order to understand the concept of this better we need to divide the functions in two categories:
+
+1. Normal function
+2. Method
+
+A normal function is a function which is defined in the global context.
+A method is a function which is defined within an object.
+
+In order to invoke methods, we need objects i.e. methods are invoked as follows:
+
+objName.methodName(args if any);
+
+so, in case of methods, "this" always refers to the invoking object.
+
+Uses of this keyword:
+
+1. it is used to define constructor functions (classes in JS). A constructor function is used
+for creating objects with different values. It uses this to represent object properties.
+
+e.g. here Person is a constructor function. It receives two parameters and creates a new object and
+assigns the parameters values to the object.
+
+
+var Person = function(name, age){
+    this.name = name; 
+    this.age = age;
+    this.display= function(){ // Method
+        console.log(this.name+' is '+this.age+' years old.'); // In case of method, this always represents the current object.
+    }
+}
+
+2. this keyword is used to pass the original context to a callback method so that callback method can use
+the properties of the original context.
+
+In async programming, we use callback methods to do something in future.
+
+e.g. forEach() loop provided by JS can be used to understand the use of callbacks in async programming.
+
+syntax of forEach() loop:
+
+arrayProperty.forEach(callbackfunction);
+
+This loop works in the following manner:
+
+1. It iterate array elements one by one.
+2. In each iteration, callback function is invoked by passing the current element as argument.
+
+The callback that we are passing in the forEach will be executing within the context of forEach. it will not
+have the invoking context available but sometimes that is requred.
+As in our case we want to refer the name of invoking object within the callback.
+
+In such case, invoking contexts need to be passed through this.
+
+e.g. arrayProperty.forEach(callbackfunction, invokingcontext);
+
+To solve this problem of losing the original context in callback functions, concept of arrow functions was 
+introduced in ES5.
+Main difference b/w an arrow and a normal is related to this keyword.
+In a normal function, this points to the global object.
+In an arrow function, this point to the current object.
