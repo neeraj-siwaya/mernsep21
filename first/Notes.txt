@@ -132,3 +132,51 @@ introduced in ES5.
 Main difference b/w an arrow and a normal is related to this keyword.
 In a normal function, this points to the global object.
 In an arrow function, this point to the current object.
+
+12/09/21
+In JavaScript applications, most of the times we need to use third party libraries i.e. we need to invoke
+functions which have different context than current context.
+
+In such cases, we need some mechanism to pass current context to these libararies so that they can execute
+our code properly.
+
+Each JS function is object and has some methods one of them is call() which receives the context as argument. 
+It is used to invoke
+third party with different contexts.
+
+syntax: 
+1. functionName.call(context);
+2. functionName.call(context, arg1, arg2, ...);
+
+All these arguments will be stored in the arguments object of the invoked function.
+Each function in JS also has a property named arguments which is an object and contains the arguments passed to 
+function.
+
+apply(): apply() method is similar to call except that it receives arguemtns as array.
+
+2. functionName.apply(context, argumentsArray);
+
+
+
+bind(): is another method of functions which is used to create a new funtion by binding the
+given function to the given context.
+
+Syntax: var functionName = currentFunction.bind(context, arguements);
+
+Closure: is a context which is generated when a nested function uses the variables of the outer function.
+It facilitate the use of outer function variable in inner function even after the execution of outer function.
+
+Immediately invoked function(IIFI) or self invoked functions:
+
+An Immediately invoked function is a function which is Immediately invoked just after it is loaded
+i.e. it doesn't require an explicit statement for its invocation.
+
+syntax:
+(function(args if any){
+    function body;
+})(required args);
+
+Use cases of IIFIs: 
+1. An IIFI acts as a wrapper for other functions and variables and prevents name conflicts. All third party
+libraries are mainly provided in the form of iifis to isolate their variables with the application code.
+
