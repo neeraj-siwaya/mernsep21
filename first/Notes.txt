@@ -180,3 +180,70 @@ Use cases of IIFIs:
 1. An IIFI acts as a wrapper for other functions and variables and prevents name conflicts. All third party
 libraries are mainly provided in the form of iifis to isolate their variables with the application code.
 
+Sep 18, 2021
+
+What is ReactJs?
+
+ReactJs is libarary for creating User Interfaces.  It can be used in single HTML or in a 
+complex web applications.
+
+In React, we assume that each web page is a collection of components. A component is UI element which
+can be as simple as a button or text field or a label or as complex as an entire page.
+
+React advocates building complex UIs by composing simple components.
+
+In order to understand the use of components in React, we need to understand React Elements.
+
+A React Element is a JS object which represent a UI/HTML (DOM) element in json format, without 
+the extra baggage of DOM.
+
+ReactJs provides React object in React library which provides methods for creating element.
+
+createElement(): is used to create Element object.
+
+syntax: React.createElement('HTML Element or React Component Name', attribute list, children);
+
+To render react elements to DOM, ReactDOM library is used.
+
+React Component: Is a function or class which receives an optional parameter props and returns 
+an Element object.
+
+In other words, we have two types of components in React:
+1. Functional Component
+2. Class Component
+
+Syntax of defining a functional component:
+
+function ComponentName(props?) {
+    return element*;
+}
+Notes: 
+? - represents optional
+* - here element represents an object of type ReactElement.
+
+To simplify developoment of components, React introduced the context of JSX i.e. extended Java JavaScript 
+which is the combination of JS & HTML.
+
+To compile JSX into pure JS, Babel transpiler is used. Babel is a tool which converts JSX into 
+JavaScript.
+
+Syntax of defining a class component:
+
+class ComponentName extends React.Component{
+    render(){
+        element
+    }
+}
+
+Here we are defining class which is inheriting the Component class of the React library.
+
+A functional component directly returns an Element whereas in a class component render() method
+returns the element.
+
+
+Components can be further categorized as follows:
+
+1. Stateless components
+2. Stateful components
+
+State represents data which is used in a UI.
