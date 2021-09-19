@@ -1,0 +1,84 @@
+<html>
+
+    <head>
+        <title>First React App</title>
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="main">
+
+        </div>
+        <script type="text/babel">
+        
+            function BooksList(props) {
+                
+                return (
+                    <ul>
+                        {props.list.map((book)=>{
+                            return (
+                                <li key={book.id}>
+                                    <span>{book.name}</span>&nbsp;&nbsp;
+                                    <button onClick={()=>{props.onRemove(book.id)}}>Delete</button>
+                                </li>
+                                )
+                        })}
+                    </ul>   
+                )
+                
+            }
+            
+            
+            class BooksComponent extends React.Component {
+                constructor(props){
+                        super(props)
+                        this.state = {
+                            books: [
+                                {id:1, name: 'Who moved my cheese'},
+                                {id:2, name: 'The Alchemist'},
+                                {id:3, name: 'The Choice'},
+                                {id:4, name: 'You can win'}
+                            ]
+                        }
+                    //this.removeBook = this.removeBook.bind(this)    
+
+                }
+                /* removeBook(id){
+                    console.log("Book having id "+id+" will be removed here.");
+                        this.setState((currentState)=>{
+                            return{
+                                books: currentState.books.filter((book)=>{ 
+                                return book.id !== id
+                            })
+                        }
+                    })
+                } */
+                removeBook=(id)=>{
+                    console.log("Book having id "+id+" will be removed here.");
+                        this.setState((currentState)=>{
+                            return{
+                                books: currentState.books.filter((book)=>{ 
+                                return book.id !== id
+                            })
+                        }
+                    })
+                }
+                render(){
+                    return (
+                    <div>
+                     
+                    <BooksList list={this.state.books} onRemove={this.removeBook}/> 
+                    </div>
+                )
+                }
+                
+           }
+           
+            ReactDOM.render(
+                <BooksComponent/>,
+            document.getElementById('main'));
+            
+        </script>
+    </body>
+</html>

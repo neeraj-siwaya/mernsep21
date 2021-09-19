@@ -247,3 +247,54 @@ Components can be further categorized as follows:
 2. Stateful components
 
 State represents data which is used in a UI.
+
+Sep 19, 2021.
+
+In order to pass props to class components, we need to define constructors
+
+syntax:
+
+class ComponentName extends React.Component{
+
+    constructor(props){
+        super(props); // Constructor is Component class is invoked.
+        // Defintion of other attributes if any
+    }
+    render() {
+
+        //inside the render, props can be used as this.props
+    }
+}
+
+
+
+State Vs Props:
+
+Props is the input which is provided to a component by its parent.
+State is the data which is managed by the component itself.
+
+How state is defined in a class component:
+
+class ComponentName extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.state = { // we are adding state propery to the current object
+            propertyName : value,
+            ....
+        }
+    }
+}
+
+
+State of a component can't be directly change because such change can't be identfied by React.
+React provides following method for chaning state:
+
+  setState((currentState)=>{
+      return{
+          // returns an object containing modified state, this object is merged with the original 
+          // state by react.
+      }
+  })
+
+  <BooksList list={this.state.books} onRemove={this.removeBook.bind(this)}/> 
