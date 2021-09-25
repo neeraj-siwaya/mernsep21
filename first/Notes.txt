@@ -298,3 +298,94 @@ React provides following method for chaning state:
   })
 
   <BooksList list={this.state.books} onRemove={this.removeBook.bind(this)}/> 
+
+
+  Sep 25, 2021
+
+
+  Creating React Applications:
+
+  1. Requirements for creating react applications
+
+        Node Must be installed. Node is a JavaScript runtime environment which is used to execute
+        java script prorams outside the browser. It can be installed on a server or a standalone
+        computer.
+
+        Over the time, NodeJs has evovled an eco system which comprises following things:
+
+            1) NPM Repository: A Server for sharing node libraries which are known as packages.
+            2) Tools: A lot of tools are provided by Node community to facilitate development, 
+            publishing, and use of node packages. Most commonly used Node packages are:
+
+                a) NPM: Node Package Manager: Is used to publish, install, and uninstall node packages.
+                b) NPX: Node Package Executer: Is used to execute node packages.
+                c) NVM: Node Version Manager: Is used to install and manager different versions of nodes.
+            etc.
+
+    Dependencies can be of two types:
+
+    1. Development Dependency
+    2. Application Dependency
+
+    Development Dependencies represent tools which are required for the development of a specific 
+    kind of applications. In case of react, create-react-app, Babel etc are examples of 
+    development dependency.
+
+    Application Dependencies represents libraries or frameworks which are used in applications. React,
+    ReactDOM, Redux, Exios etc are exaples of application dependencies.
+
+
+ In order to create react applications, create-react-app tool is provided. 
+
+This tool can be used in the following ways:
+
+old approach:
+
+1. Install it locally or globally through npm install command.
+2. In the package.json file of the application, create a script entry for it.
+3. Run the script using the npm run command.
+
+
+New approach:
+
+Simply use npx tool to run create-react-app using the followin syntax:
+
+npx create-react-app AppName
+
+NPX will check whether creact-react-app tool is install locally or globally, if yes it will execute it 
+otherwise it will fetch it from NPM repository and execute it.
+  
+
+Understanding the directory structure of a React Application:
+
+Each newly created react application has following files and folders:
+
+1. node_modules: Is the folder where all dependencies (Node packages) are stored.
+2. public: is a folder which contains static rescours such as images, icons and index.html page. 
+Which act as the home page of the react application. index.html page contains 
+following div which is used by react to hook the app component to the page.
+<div id="root"></div>
+
+i.e. at runtime, react app component is associated to this div.
+3. src: is the main source folder which is used to store js files containing react components and 
+        it also has css files.
+
+        Under the src folder, index.js file is the entry point of application execution. It is responsible
+        for rendering App compoent inside the root div. 
+        it does the same using the following code:
+
+        ReactDOM.render(
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>,
+        document.getElementById('root')
+        );
+
+     Another important file under src is App.js, it contains the definition of App component of 
+     React.
+
+ package.json & package-lock.json are two important files of each application.
+
+ package.json file contains all the configuration information of the application. Mainly it contains
+ the depencies, scripts and other general or tool specific configuration.
+ 
