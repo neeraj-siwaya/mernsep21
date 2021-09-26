@@ -389,3 +389,93 @@ i.e. at runtime, react app component is associated to this div.
  package.json file contains all the configuration information of the application. Mainly it contains
  the depencies, scripts and other general or tool specific configuration.
  
+ Sep 26, 2021
+
+ ES 6 imports and exports: Each JS file is treated as a module in NodeJs. By default, var, functions or 
+ objects which are defined in a module, can only be used within the module.
+ To facilitate the use of members of one module in another, we have to export them in the source module
+ and need to import in the target module.
+
+
+ ES 6 supports named and default exports:
+
+named export: 
+
+syntax: export memberName;
+ 
+            or
+         export member declaration or definition;
+
+ e.g.
+// First approach
+    function one() {
+
+    }       
+
+    export one; //named export
+
+// Second approach
+export function one() { //Named export
+
+}
+
+Named exports are imported as follows
+
+import {memberName} from 'moduleName';
+
+e.g. import {one} from '/.src';
+
+
+
+
+ let there be two modules a (a.js) & b(b.js). a has two functions x() & y() which need to be
+ used in b.js.
+
+// a.js
+export function x(){
+
+}
+
+export function y(){
+
+}
+
+//b.js
+import {x, y} from './a'
+
+
+Default export: In each module we can have one default export
+// c.js
+export default function f1(){ //default export
+
+}
+
+export function f2(){ //normal or named export
+
+}
+
+syntax of default import
+
+import memberName from 'moduleName'
+
+Note: If a module has both default and named exports then default import is done before named imports.
+
+e.g. in d.js only f1 is required but in e.js both f1() & f2() are required.
+
+// d.js
+import f1 from './c'
+
+// e.js
+
+import f1, {f2} from './c'
+
+
+Note:  A functional compoponent or the render method of a class component, only one UI element 
+can be returned. If we have to return multiple UI elements, we need to wrap them in a single element.
+
+
+Managing input in React:
+
+React provides controlled and uncontrolled input elements for managing input.
+
+A controlled element is a UI element value of which is managed/controlled by a react component.

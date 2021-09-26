@@ -1,10 +1,11 @@
+import Books from './Books';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <h3>My First React App.</h3>
+      <Books />
     </div>
   );
 }
 
-export default App;
+
