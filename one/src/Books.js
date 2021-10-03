@@ -1,22 +1,20 @@
 import React from 'react';
 import BooksList from './BooksList';
+import axios from 'axios';
 
 export default class Books extends React.Component {
     
-    constructor(props){
-            super(props)
-            this.state = {
-                books: [
-                    {id:1, name: 'Who moved my cheese'},
-                    {id:2, name: 'The Alchemist'},
-                    {id:3, name: 'The Choice'},
-                    {id:4, name: 'You can win'}
-                ],
-                bookName: '',
-                nextId:5
-            }
-        }
     
+    constructor(props){
+        super(props)
+        this.state = {
+            books: [],
+            bookName: '',
+            nextId:5,
+            loading:true
+        }
+        console.log("Books component is created.");
+    }
     getBookName =(event)=>{
         this.setState(()=>{
             return {
@@ -49,6 +47,10 @@ export default class Books extends React.Component {
         })
     }
     render() {
+        console.log("Books component is rendered.");
+        if(this.state.loading) {
+            return <h1>Loading books...</h1>
+        }
         return (
         <div>
         <BooksList list={this.state.books} input={this.state.bookName} 
@@ -57,5 +59,33 @@ export default class Books extends React.Component {
         </div>
     )
     }
+    //other life-cycle method
+    componentDidMount(){
+        console.log("Books component is mounted.");
+        let instance = axios.create({
+            baseURL: 'http://localhost:4000/books'
+        });
+        // fetching books from the api
+        instance.get()
+        .then((response)=>{
+            console.log('Following data is received: ', response.data)
+            this.setState((currentState)=>{
+                return{
+                    books: response.data,
+                    loading: false
+            }
+        })
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+    }
+    componentDidUpdate(prevProps, prevState){
+        console.log("Books component is updated.");
+    }
+    componentWillUnmount(){
+        console.log("Books component is unmounted.");
+    }
+
     
 }

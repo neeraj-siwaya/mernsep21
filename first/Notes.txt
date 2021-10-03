@@ -479,3 +479,110 @@ Managing input in React:
 React provides controlled and uncontrolled input elements for managing input.
 
 A controlled element is a UI element value of which is managed/controlled by a react component.
+
+
+Oct 3, 2021
+
+Component lifecycle:
+
+Life cycle of each react component can be divided into three phases:
+
+1. Creation or Mounting - Is the first phase of a component life cycle. It starts with the creation
+of component and ends with the component being added to the DOM. Major events of this phase are:
+
+a) Component is created i.e. constructor of the compoent class is executed.
+b) render() method is invoked which add the component to the DOM
+c) componentDidMount() lifecycle method is invoked to let the component perform initialization operations
+such as fetcing data from an API, opening socket connection etc.
+
+
+2. Growth or Updation- After a component is mounted, whenever its state is changed, component is updated.
+this phase has following event.
+
+a) render() - After the state of compoent is changed, component is rerendered.
+b) componentDidUpdate() - lifecycle method is invoked by React to let the application programmer do
+something related to the update.
+
+3. Death or Unmounting - Just before a component is unmounted, react let the application programmers
+do something such as clean up e.g. closing the socket connection, saving the state to be used again etc.
+
+ This phase has only one lifecycle method.
+
+ compoentWillUnmount(): It is invoked just before a component is destroyed.
+=====================================================================================================
+The main use of componentDidMount() lifecycle method is fetching data from APIs.
+
+until we create actual api, we can use json server npm package to create a fake API for the testing
+of this life cycle method.
+
+json-server is an open source node package which allows us to create APIs.
+
+Steps required to create a fake api using json server:
+
+1. install json-server package globally using the following command:
+
+npm i -g json-server
+
+2. create a folder for the api.
+3. create a db.json file under this folder and add the API data in json fromat to this file.
+
+Start the json server on default port 3000 using the following command:
+
+json-server --watch db.json
+
+If you want to change the port using following command
+json-server --watch db.json --port portNo
+
+e.g. to start json-server on port 4000
+json-server --watch db.json -- port 4000
+
+you can use postman to test, get, post, put and delete api requests.
+
+1. To fetch all the resources. e.g. we have books as our api resources:
+
+send a get request to the url: localhost:4000/books
+
+2. To fetch a single resource. e.g. book with id 2
+
+send a get request to the url: localhost:4000/books/2 or localhost:4000/books?id=2
+
+3. To add a new resource. e.g to add a new book:
+
+send a post request: localhost:4000/books and send the new book in the body as a json object.
+
+etc.
+
+============================================================================================
+
+In order to connect a React application to an API, a third party library is required.
+
+Most commonly used libararies for this purpose are Axios and fetch.
+
+Steps required to use Axios for API connection.
+
+1. Install Axios as a dependency in your react app.
+ 
+ command npm i Axios
+
+2. import Axios in the compoenent in which you want to make the API call.
+syntax:
+    import axios from 'axios';
+ 
+3. Create and Axios instance using the following syntax:
+
+    let or const instanceName = axios.create({
+        configuration properties
+    });
+
+one of the required configuration property is baseUrl which represent the API URL.
+
+e.g. we can create instance to hit json-server api as follows:
+ 
+ let instance = axios.create({
+            baseURL: 'https://some-domain.com/api/'
+        });
+
+4. Use get, post, put and delete methods of the axios instance to make the corresponding
+API requests.
+
+All these methods return promises. Promises are a way to perform asynchronous operations.
